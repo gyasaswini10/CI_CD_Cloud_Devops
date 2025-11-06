@@ -1,0 +1,70 @@
+Co1_Notes
+
+16 July 2025
+09:57 AM
+
+Devops=Develop,meynt(plan,code test,build)   +   Operations(relesase,deploy,monitor ,operate)
+
+
+Collaboration between development and opearations team
+Automation of softwate delivery process
+Automation Integration(ci) and continuous delivery(cd)
+Immproved quality and speed
+
+
+
+Contiunos intergration 
+Automantically build and test when there is change in code
+Ensure bug free code
+Ensures higher code quality and reduces integration issues 
+Packaging the application(war/jar/docker image)
+
+
+Continuous deployment
+-Automationcally deploy for production
+
+Life cycle 
+Code->build->test->deployment
+
+
+Tools
+Code-Git-,github,gitlab ,bitbucket
+Build-war/jar/docker image
+Test-Pytest , Junittest,sonarqube(pluggins to be installed in jenkins)
+Deploy apache /tomcat,docker ,kubernetes
+
+
+Git-
+Version control source code repository
+
+git init                             # Initialize a new Git repository
+git add .                            # Stage all files for commit
+git commit -m "Initial commit"       # Commit with a message
+git branch -M main                   # Rename current branch to 'main'
+git remote add origin <repo-URL> && git push -u origin main   # Add remote repo and push
+
+Cogiure git hub accounft
+
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+configure GitHub Account:
+-------------------------
+
+git config --global user.name "srithars"
+git config --global user.email "sss.srithar@gmail.com"
+
+Git Operations:
+---------------
+
+git init    # git initialization
+
+git add .   # Stage all files
+
+git commit -m "first commit"  # Stage all files
+
+git branch -M main        # create a branch
+
+git remote add origin https://github.com/srithars/cicd_repo.git 
+
+git push -u origin main
