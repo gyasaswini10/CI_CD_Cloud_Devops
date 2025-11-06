@@ -1,0 +1,226 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./MyResults.css";
+
+const API_BASE = "http://localhost:9096/api/quizzes";
+
+export default function MyResults() {
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const username = localStorage.getItem("fullName"); // Replace with logged-in user
+
+  useEffect(() => {
+    if (!username) {
+      setError("Username not found. Please login.");
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    axios
+      .get(`${API_BASE}/quiz-results/users/${username}`)
+      .then((res) => setResults(res.data))
+      .catch((err) => {
+        console.error("AxiosError:", err);
+        setError("Failed to fetch quiz results. Please try again later.");
+      })
+      .finally(() => setLoading(false));
+  }, [username]);
+
+  return (
+    <div className="results-container">
+      <h1 className="results-header">My Quiz Results</h1>
+
+      {loading ? (
+        <p className="text-gray-600 text-center">Loading results...</p>
+      ) : error ? (
+        <p className="text-red-600 text-center">{error}</p>
+      ) : results.length === 0 ? (
+        <p className="text-gray-600 text-center">No quiz attempts yet.</p>
+      ) : (
+        <table className="results-table">
+          <thead>
+            <tr>
+              <th>Quiz Title</th>
+              <th>Domain</th>
+              <th>Score</th>
+              <th>Total</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {results.map((res) => (
+              <tr key={res.id}>
+                <td>{res.quizTitle || "Untitled Quiz"}</td>
+                <td>{res.quizDomain || "N/A"}</td>
+                <td>{res.score}</td>
+                <td>{res.total}</td>
+                <td>{new Date(res.submittedAt).toLocaleString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+}
+    now frontend accepts api requests from this port now give # =========================
+# MySQL Deployment & PVC
+# =========================
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          env:
+            - name: MYSQL_DATABASE
+              value: ecommerce
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+
+# =========================
+# Backend Deployment
+# =========================
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: srithar1234/ecommerce-backend1:v1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/ecommerce
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
+
+# =========================
+# Frontend Deployment
+# =========================
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: srithar1234/ecommerce-frontend1:v1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: REACT_APP_BACKEND_URL
+              value: http://backend:8080
+
+# =========================
+# Services
+# =========================
+---
+# MySQL Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  type: ClusterIP
+  selector:
+    app: mysql
+  ports:
+    - port: 3306
+      targetPort: 3306
+
+---
+# Backend Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  type: NodePort
+  selector:
+    app: backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30083
+
+---
+# Frontend Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: NodePort
+  selector:
+    app: frontend
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30082
+  this corectly with my docker hub images
+
+  docker run -d -p 31096:31096 2300030244/quizbackend:latest
