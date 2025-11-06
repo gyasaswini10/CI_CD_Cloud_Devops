@@ -1,0 +1,8 @@
+## Use env vars with defaults so the jar runs locally or in containers
+spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/hospitaldb?useSSL=false&allowPublicKeyRetrieval=true}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME:hospital}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:hospitalpass}
+spring.jpa.hibernate.ddl-auto=${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+
+# Server port can also be overridden
+server.port=${SERVER_PORT:8081}

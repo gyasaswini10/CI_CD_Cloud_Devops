@@ -1,0 +1,20 @@
+2025-10-12 00:33:15,559 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is not available. Remote download required.
+2025-10-17 11:12:12,067 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2025-10-17 11:32:09,302 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2025-10-17 11:32:22,739 [Worker-35: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2025-10-17 11:32:24,941 [Worker-35: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.klu:hospital:0.0.1-SNAPSHOT @ C:\Users\gyasu\Desktop\ex br\hospital-backend\pom.xml.
+2025-10-17 11:32:28,405 [Worker-35: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /hospital-backend/src/main/java
+2025-10-17 11:32:28,407 [Worker-35: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /hospital-backend/src/main/resources
+2025-10-17 11:32:28,423 [Worker-35: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /hospital-backend/src/main/resources
+2025-10-17 11:32:28,447 [Worker-35: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /hospital-backend/src/test/java
+2025-10-17 11:32:28,452 [Worker-35: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /hospital-backend/src/test/resources
+2025-10-17 11:32:30,904 [Worker-35: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed for 1 poms: local refresh takes 0.00 sec, refresh facades takes 4.00 sec, update config takes 3.00 sec 
+2025-10-17 11:32:32,028 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-10-17 11:32:32,078 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-10-17 11:32:32,090 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\gyasu\Desktop\ex br\hospital-backend\src\test\resources
+2025-10-17 11:37:18,712 [Worker-31: Launching hospital-backend - HospitalApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-10-17 11:37:18,723 [Worker-31: Launching hospital-backend - HospitalApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-10-17 11:37:18,732 [Worker-31: Launching hospital-backend - HospitalApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\gyasu\Desktop\ex br\hospital-backend\src\test\resources
+2025-10-17 11:38:17,551 [Worker-11: Launching hospital-backend - HospitalApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-10-17 11:38:17,602 [Worker-11: Launching hospital-backend - HospitalApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-10-17 11:38:17,612 [Worker-11: Launching hospital-backend - HospitalApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\gyasu\Desktop\ex br\hospital-backend\src\test\resources

@@ -1,0 +1,5 @@
+Image: a read-only snapshot (built from a Dockerfile) containing the app filesystem and metadata.
+Container: a running (or stopped) instance of an image with its own writable layer and isolated processes/resources.
+Images are static artifacts you build and share; containers are the live environments you start, stop, and remove.
+
+GPT-5 mini • 1x

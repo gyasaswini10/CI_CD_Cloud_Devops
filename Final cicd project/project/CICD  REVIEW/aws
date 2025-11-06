@@ -1,0 +1,14 @@
+Skill12-Fullsatck App Deploy using AWS, Docker and Git Repo
+-----------------------------------------------------------
+>sudo -i
+>pwd
+>cd ..
+>cd home
+>cd ubuntu
+>cd docker
+>sudo apt update
+
+Take the docker commands from,
+https://docs.docker.com/engine/install/ubuntu/
+
+>docker compose up -d --build

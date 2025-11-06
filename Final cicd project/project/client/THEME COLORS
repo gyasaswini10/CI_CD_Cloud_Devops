@@ -1,0 +1,20 @@
+# Colors used in the project
+
+Navbar Background: #f7f7f7
+Navbar Links: black
+Sign In Button: #e0e0e0
+Sign Up Button: #4caf50
+Header Background: #e0f7fa
+Header Text: black
+Get Started Button: #ff9800
+Features Section Background: #f3f3f3
+Features Text: black
+
+# Colors Used in the Site
+
+Sidebar Background: #3f0d75 (purple)
+Sidebar Dark Mode: #1c1c1c
+Header Background: #d9f4f9 (light blue)
+Font: black
+Search Background: white
+Icons: white (sidebar), black (input area)

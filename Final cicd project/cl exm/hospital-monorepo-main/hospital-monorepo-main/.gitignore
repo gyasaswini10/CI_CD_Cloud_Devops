@@ -1,0 +1,9 @@
+﻿# Node & Java build artifacts
+node_modules/
+frontend/node_modules/
+backend/target/
+*.log
+.env
+monorepo/**/node_modules
+.idea/
+.vscode/

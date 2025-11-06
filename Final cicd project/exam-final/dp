@@ -1,0 +1,22 @@
+:: Step 1: Install dependencies
+call npm install
+
+:: Step 2: Build React project
+call npm run build
+:: Step 3: Remove old deployment
+rmdir /S /Q "C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\hospital"
+
+:: Step 4: Create deployment folder
+mkdir "C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\hospital"
+
+:: Step 5: Copy build files
+xcopy /E /I /Y dist\* "C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\hospital"
+
+
+:: Step 6: Safe Restart Tomcat
+sc query Tomcat9 | find "RUNNING" >nul
+if %ERRORLEVEL%==0 (
+    net stop Tomcat9
+    timeout /t 5 /nobreak
+)
+net start Tomcat9

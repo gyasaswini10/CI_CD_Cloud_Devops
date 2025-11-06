@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    # If USE_REGISTRY_IMAGES=true, docker-compose will use the image below (GHCR)
+    image: ${BACKEND_IMAGE:-}
+    build: 
+      context: .
+      dockerfile: deploy/backend.Dockerfile
+      args:
+        REPO: ${BACKEND_REPO}
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SERVER_PORT=8081
+    ports:
+      - "8081:8081"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    # If USE_REGISTRY_IMAGES=true, docker-compose will use the image below (GHCR)
+    image: ${FRONTEND_IMAGE:-}
+    build:
+      context: .
+      dockerfile: deploy/frontend.Dockerfile
+      args:
+        REPO: ${FRONTEND_REPO}
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

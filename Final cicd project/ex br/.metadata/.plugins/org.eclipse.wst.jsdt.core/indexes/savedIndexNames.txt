@@ -1,0 +1,5 @@
+INDEX VERSION 1.4+C:\Users\gyasu\Desktop\ex br\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+4075369095.index
+2658063602.index
+2311503193.index
+884997797.index

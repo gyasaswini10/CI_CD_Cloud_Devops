@@ -1,0 +1,26 @@
+package com.example.demo.model;
+
+@Service
+public class EmailManager {
+	
+	
+		@Autowired
+		JavaMailSender JMS;
+		public String sendEmail (String toEamil,String subject,  String message) {
+			try {
+				SimpleMailMessage mailMessage =new SimpleMailMessage();
+				mailMessage.setFrom("jeenepallyadiseshu@gmail.com");
+				mailMessage.setTo(toEamil);
+				mailMessage.setSubject(subject);
+				mailMessage.setText(message);
+				
+				JMS.send(mailMessage);
+				 return "200::Password sent to the registered email";
+		    }catch(Exception e)
+		    {
+		      return "401::" + e.getMessage();
+		    }
+			}
+		
+	}
+
