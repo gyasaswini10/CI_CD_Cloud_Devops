@@ -1,0 +1,43 @@
+
+replicaCount: 2
+
+image:
+  repository: 2300030244/skill17
+  tag: v1
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 8085
+  targetPort: 8080
+  nodePort: 30090   # Changed to avoid conflicts
+
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+    - host: frontend.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 300m
+    memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+
+serviceAccount:
+  create: false
+
+httpRoute:
+  enabled: false
