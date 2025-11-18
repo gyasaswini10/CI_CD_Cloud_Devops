@@ -82,6 +82,12 @@ LAB - 3
 
 
 
+APACHE TOMCAT
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a8ec1ce5-963d-4056-8a67-3d2f48260161" />
+
+JENKINS
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/79b8a604-be09-41ac-962c-a06d7ae51288" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/cfa347fa-b380-4877-a0b5-9a4e0eae2662" />
 
 
 
