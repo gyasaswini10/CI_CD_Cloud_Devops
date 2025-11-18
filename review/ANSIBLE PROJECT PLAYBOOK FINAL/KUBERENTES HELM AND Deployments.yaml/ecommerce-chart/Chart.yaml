@@ -1,0 +1,6 @@
+apiVersion: v2
+name: property
+description: A Helm chart for property fullstack (MySQL + Backend + Frontend)
+type: application
+version: 0.1.0
+appVersion: "1.0"

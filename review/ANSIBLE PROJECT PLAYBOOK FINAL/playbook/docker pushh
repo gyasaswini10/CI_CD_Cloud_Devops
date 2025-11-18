@@ -1,0 +1,32 @@
+docker build -f Dockerfile.backend -t 2300030244/property_backend:latest .
+docker build -f Dockerfile.frontend -t 2300030244/property_frontend:latest .
+
+docker build -f Dockerfile.backend -t 2300030244/property_backend:latest .
+docker push 2300030244/property_backend:latest
+
+docker push 2300030244/property_frontend:latest
+ansible-playbook -i inventory playbook.yaml     
+
+kubectl delete deployment --all -n default
+kubectl delete pods --all -n default
+kubectl delete rs --all -n default
+kubectl get all -n default
+
+kubectl get deployments
+ kubectl get svc
+
+kubectl get deployments
+
+kubectl get services
+
+kubectl delete svc backend -n default
+kubectl delete svc frontend -n default
+kubectl delete svc mysql -n default
+
+
+
+docker build -f Dockerfile.backend -t 2300030244/property_backend1:v1 .
+docker build -f Dockerfile.frontend -t 2300030244/property-frontend1:v1 .
+
+docker push 2300030244/property-backend1:v1
+docker push 2300030244/property-frontend1:v1

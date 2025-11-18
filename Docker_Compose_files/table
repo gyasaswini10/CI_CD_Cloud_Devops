@@ -1,0 +1,85 @@
+
+ ✔ backend                                 Built                              0.0s 
+ ✔ frontend                                Built                              0.0s 
+ ✔ Container propertymanagement-db1        Healthy                            3.1s 
+ ✔ Container propertymanagement-backend1   Started                            4.1s 
+ ✔ Container propertymanagement-frontend1  Starte
+
+
+-- Select the database
+USE lease;
+
+-- Clear existing data first to avoid duplicates
+TRUNCATE TABLE menus;
+TRUNCATE TABLE roles;
+
+-- Insert menus
+INSERT INTO menus (mid, icon, menu) VALUES
+(1, '/images/list.png', 'Property Posting'),
+(2, '/images/logo.png', 'Property Search'),
+(3, '/images/profile.png', 'My Profile');
+
+-- Insert roles
+INSERT INTO roles (id, role, mid) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 1),
+(5, 2, 2),
+(6, 2, 3),
+(7, 3, 2),
+(8, 3, 3);
+
+-- Verify
+SELECT * FROM menus;
+SELECT * FROM roles;
+To insert the produts
+
+docker exec -it propertymanagement-db1   mysql -uroot -proot
+
+Now mysql> container terminal is opened. 
+
+Now execute the following commands in the mysql container terminal.
+
+mysql>SHOW DATABASES;
+mysql>USE leaselinker ;
+mysql>SHOW TABLES;
+To insert the produts
+
+$docker exec -it ecommerce-db1 mysql -uroot -proot
+
+Now mysql> container terminal is opened. 
+
+Now execute the following commands in the mysql container terminal.
+
+mysql>SHOW DATABASES;
+mysql>USE ecommerce;
+mysql>SHOW TABLES;
+docker exec -it propertymanagement-db1 mysql -uroot -proot
+-- Select the database
+USE leaselinker;
+
+-- Check existing tables
+SHOW TABLES;
+-- Insert menus
+INSERT INTO menus (mid, icon, menu) VALUES
+(1, '/images/list.png', 'Property Posting'),
+(2, '/images/logo.png', 'Property Search'),
+(3, '/images/profile.png', 'My Profile');
+
+-- Insert roles
+INSERT INTO roles (id, role, mid) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 1),
+(5, 2, 2),
+(6, 2, 3),
+(7, 3, 2),
+(8, 3, 3);
+INSERT INTO menus (mid, icon, menu) VALUES
+(1, '/images/list.png', 'Job Posting'),
+(2, '/images/logo.png', 'Job Search'),
+(3, '/images/profile.png', 'My Profile');
+DELETE FROM roles;   -- remove dependent rows first
+DELETE FROM menus;   -- now you can delete menus

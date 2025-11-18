@@ -1,0 +1,21 @@
+# Step 1: Build stage (Node.js for React/Vite)
+FROM node:18 AS build-stage
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y git
+
+RUN git clone https://github.com/gyasaswini10/Docker-Deploy_final_frontend.git .
+
+RUN npm install
+RUN npm run build
+
+# Step 2: Runtime stage (Tomcat for serving)
+FROM tomcat:10.1-jdk21-temurin
+
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+COPY --from=build-stage /app/dist/ /usr/local/tomcat/webapps/ROOT/
+
+
+EXPOSE 8082
+CMD ["catalina.sh", "run"]

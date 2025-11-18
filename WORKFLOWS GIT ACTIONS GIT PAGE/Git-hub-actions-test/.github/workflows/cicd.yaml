@@ -46,4 +46,4 @@ jobs:
           git config --global user.name "gyasaswini10"
           git config --global user.email "gyasu1110@gmail.com"
           npm install -g gh-pages
-                gh-pages -d dist -r https://x-access-token:${GITHUB_TOKEN}@github.com/gyasaswini10/Git-hub-actions-test.git
+                gh-pages -d dist -r https://x-access-token:${GITHUB_TOKEN}@github.com/gyasaswini10/Hospital-Lab-Exam.git

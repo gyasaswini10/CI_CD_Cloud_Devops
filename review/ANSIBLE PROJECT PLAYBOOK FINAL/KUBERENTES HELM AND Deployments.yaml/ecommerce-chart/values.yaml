@@ -1,0 +1,34 @@
+mysql:
+  image: mysql:8.0
+  storage: 5Gi
+  rootPassword: root
+  database: leaselinker
+
+backend:
+  image: rachapudi30570/property-backend1:v1
+  replicas: 2
+  port: 8080
+  nodePort: 30083
+
+frontend:
+  image: rachapudi30570/property-frontend1:v1
+  replicas: 2
+  port: 8080
+  nodePort: 30082
+
+ingress:
+  enabled: true
+  host: property.local
+
+autoscaling:
+  backend:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 60
+
+  frontend:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 60

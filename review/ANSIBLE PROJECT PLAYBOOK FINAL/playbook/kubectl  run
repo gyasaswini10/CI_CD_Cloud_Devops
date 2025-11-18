@@ -1,0 +1,44 @@
+kubectl logs deployment/backend
+
+
+
+To insert the produts
+-----------------------
+kubectl get pods
+
+kubectl exec -it mysql-866657d588-s56fq    -- mysql -uroot -proot
+kubectl exec -it mysql-866657d588-s56fq -- mysql -uroot -proot
+
+
+
+
+SHOW DATABASES;
+
+USE leaselinker;
+
+SHOW TABLES;
+
+-- Remove all data
+TRUNCATE TABLE menus;
+TRUNCATE TABLE roles;
+
+-- Verify empty tables
+SELECT * FROM menus;
+SELECT * FROM roles;
+
+-- Insert Menu Data
+INSERT INTO menus (mid, icon, menu) VALUES
+(1, '/images/list.png', 'Property Posting'),
+(2, '/images/logo.png', 'Property Search'),
+(3, '/images/profile.png', 'My Profile');
+
+-- Insert Roles Data
+INSERT INTO roles (id, role, mid) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 1),
+(5, 2, 2),
+(6, 2, 3),
+(7, 3, 2),
+(8, 3, 3);
