@@ -1,0 +1,163 @@
+Review Docker Compose
+Configuration
+Search
+Manage Jenkins
+gurivi reddy yasaswini
+Configure
+
+General
+
+Source Code Management
+
+Triggers
+
+Environment
+
+Build Steps
+
+Post-build Actions
+General
+
+Description
+Plain text
+Preview
+
+Discard old builds
+?
+
+GitHub project
+
+This project is parameterized
+?
+
+Throttle builds
+?
+
+Execute concurrent builds if necessary
+?
+Advanced
+Source Code Management
+Connect and manage your code repository to automatically pull the latest code for your builds.
+None
+Git
+?
+Repositories
+?
+Repository URL
+?
+https://github.com/gyasaswini10/Docker_Compose_files.git
+Credentials
+?
+
+- none -
+Add
+Advanced
+
+Add Repository
+Branches to build
+?
+Branch Specifier (blank for 'any')
+?
+*/main
+
+Add Branch
+Repository browser
+?
+
+(Auto)
+Additional Behaviours
+Add
+Triggers
+Set up automated actions that start your build based on specific events, like code changes or scheduled times.
+
+Trigger builds remotely (e.g., from scripts)
+?
+
+Build after other projects are built
+?
+
+Build periodically
+?
+
+GitHub hook trigger for GITScm polling
+?
+
+Poll SCM
+?
+Schedule
+?
+* * * * *
+Do you really mean "every minute" when you say "* * * * *"? Perhaps you meant "H * * * *" to poll once per hour
+Would last have run at Thursday, 9 October, 2025, 10:38:00 am India Standard Time; would next run at Thursday, 9 October, 2025, 10:39:00 am India Standard Time.
+
+Ignore post-commit hooks
+?
+Environment
+Configure settings and variables that define the context in which your build runs, like credentials, paths, and global parameters.
+
+Delete workspace before build starts
+Advanced
+
+Use secret text(s) or file(s)
+?
+
+Provide Configuration files
+?
+
+Add timestamps to the Console Output
+
+Inspect build log for published build scans
+
+Provide Node & npm bin/ folder to PATH
+
+Terminate a build if it's stuck
+
+With Ant
+?
+Build Steps
+Automate your build process with ordered tasks like code compilation, testing, and deployment.
+Execute Windows batch command
+?
+
+Command
+See the list of available environment variables
+@echo off
+
+REM List of containers to stop/remove
+set CONTAINERS=propertymanagement-db1 propertymanagement-backend1 propertymanagement-frontend1
+
+for %%C in (%CONTAINERS%) do (
+    docker ps -a --format "{{.Names}}" | findstr /i "%%C" >nul
+    if %ERRORLEVEL%==0 (
+        echo Stopping container %%C
+        docker stop %%C
+        echo Removing container %%C
+        docker rm %%C
+    ) else (
+        echo Container %%C does not exist, skipping
+    )
+)
+
+Advanced
+Execute Windows batch command
+?
+
+Command
+See the list of available environment variables
+
+docker compose down -v
+Advanced
+Execute Windows batch command
+?
+
+Command
+See the list of available environment variables
+docker compose up -d --build
+
+Advanced
+Add build step
+Post-build Actions
+Define what happens after a build completes, like sending notifications, archiving artifacts, or triggering other jobs.
+Add post-build action
+Save
+Apply

@@ -1,0 +1,173 @@
+
+pipeline {
+    agent any
+
+    environment {
+        CONTAINERS = "propertymanagement-db1 propertymanagement-backend1 propertymanagement-frontend1"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/gyasaswini10/Docker_Compose_files.git'
+            }
+        }
+
+        stage('Clean up old containers') {
+            steps {
+                script {
+                    def containers = env.CONTAINERS.split(' ')
+                    containers.each { c ->
+                        echo "Checking container ${c}"
+                        def exists = bat(script: "docker ps -a --format \"{{.Names}}\" | findstr /i ${c}", returnStatus: true)
+                        if (exists == 0) {
+                            echo "Stopping and removing ${c}"
+                            bat "docker stop ${c} || exit 0"
+                            bat "docker rm ${c} || exit 0"
+                        } else {
+                            echo "Container ${c} not found, skipping"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Docker Compose Down') {
+            steps {
+                bat 'docker compose down -v || exit 0'
+            }
+        }
+
+        stage('Docker Compose Up & Build') {
+            steps {
+                bat 'docker compose up -d --build'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Build and deployment successful!"
+        }
+        failure {
+            echo "❌ Build failed. Check logs for details."
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to content
+
+Jenkins
+PIPELINE DOCKER DEPLOY
+Configuration
+Search
+Manage Jenkins
+gurivi reddy yasaswini
+Configure
+
+General
+
+Triggers
+
+Pipeline
+
+Advanced
+General
+
+Description
+Plain text
+Preview
+
+Discard old builds
+?
+
+Do not allow concurrent builds
+
+Do not allow the pipeline to resume if the controller restarts
+
+GitHub project
+
+Pipeline speed/durability override
+?
+
+Preserve stashes from completed builds
+?
+
+This project is parameterised
+?
+
+Throttle builds
+?
+Triggers
+Set up automated actions that start your build based on specific events, like code changes or scheduled times.
+
+Build after other projects are built
+?
+
+Build periodically
+?
+
+GitHub hook trigger for GITScm polling
+?
+
+Poll SCM
+?
+Schedule
+?
+* * * * *
+Do you really mean "every minute" when you say "* * * * *"? Perhaps you meant "H * * * *" to poll once per hour
+Would last have run at Thursday, 9 October, 2025, 10:35:00 am India Standard Time; would next run at Thursday, 9 October, 2025, 10:36:00 am India Standard Time.
+
+Ignore post-commit hooks
+?
+
+Trigger builds remotely (e.g., from scripts)
+?
+Pipeline
+Define your Pipeline using Groovy directly or pull it from source control.
+Definition
+
+Pipeline script
+Script
+?
+  
+
+Use Groovy Sandbox
+?
+Pipeline Syntax
+Advanced
+Advanced
+Save
+Apply
+REST API
+Jenkins 2.516.1

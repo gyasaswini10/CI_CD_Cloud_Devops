@@ -2,7 +2,7 @@
 
 docker exec -it propertymanagement-db1 mysql -uroot -proot
 SHOW DATABASES;
-USE leaselinker ;
+USE prop;
 
 -- Remove all data from menus
 TRUNCATE TABLE menus;

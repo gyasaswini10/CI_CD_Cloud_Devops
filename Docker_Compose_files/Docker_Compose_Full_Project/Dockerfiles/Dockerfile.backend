@@ -32,8 +32,8 @@
     RUN apt-get update && apt-get install -y git
     
     # Clone your backend repo
-    RUN git clone  https://github.com/gyasaswini10/Docker_Backend_Property_Management.git .
-
+   # RUN git clone  https://github.com/gyasaswini10/Docker_Backend_Property_Management.git .
+RUN git clone https://github.com/SAI30570SREERachapudi/PropertyManagementSystem-Backend.git 
     RUN mvn clean package -DskipTests
 
     # # Stage 2: Run with Tomcat

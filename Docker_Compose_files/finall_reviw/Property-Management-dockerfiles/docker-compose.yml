@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: propertymanagement-db1
+    restart: always
+    environment:
+      MYSQL_DATABASE: leaselinker
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - propertymanagement-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: propertymanagement-backend1
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/leaselinker
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8083:8080"
+    networks:
+      - propertymanagement-net
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: propertymanagement-frontend1
+    restart: always
+    ports:
+      - "8082:8080"
+    depends_on:
+      - backend
+    networks:
+      - propertymanagement-net
+
+volumes:
+  db_data:
+
+networks:
+  propertymanagement-net:
+    driver: bridge
